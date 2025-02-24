@@ -20,6 +20,6 @@ Route::get('/page3/{value}', [MainController::class, 'page3']);
 /**
  * Rotas do aplicativo Notes.
  *  */
-Route::get('/login', [AuthController::class, 'login']); // Rota para login.
-Route::post('/login-submit', [AuthController::class, 'loginSubmit'])->name('auth.login.submit'); // Rota para loginSubmit.
+Route::get('/login', [AuthController::class, 'login']);
+Route::post('/login_submit', [AuthController::class, 'loginSubmit']); // Rota para submissão de login.
 Route::get('/logout', [AuthController::class, 'logout']); // Rota para logout.

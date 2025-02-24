@@ -1,8 +1,8 @@
 @extends('layouts.main_layout')
 
 
+<!-- Sessão do conteúdo. -->
 @section('content')
-
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6 col-sm-8">
@@ -16,22 +16,26 @@
                 <!-- form -->
                 <div class="row justify-content-center">
                     <div class="col-md-10 col-12">
-                        <form action="/login-submit" method="post" novalidate>
+                        <form action="/login_submit" method="post" novalidate>
                             @csrf
+
                             <div class="mb-3">
                                 <label for="text_username" class="form-label">Username</label>
                                 <input type="email" class="form-control bg-dark text-info" name="text_username" value="{{ old('text_username') }}" required>
-                                {{-- show error --}}
                                 @error('text_username')
-                                <div class="text-danger">{{ $message }}</div>
+                                <div class="text-danger mt-1">
+                                    &nbsp;&nbsp;&nbsp;{{ $message }}
+                                </div>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="text_password" class="form-label">Password</label>
                                 <input type="password" class="form-control bg-dark text-info" name="text_password" value="{{ old('text_password') }}" required>
-                                {{-- show error --}}
+                                <div class="text-danger"></div>
                                 @error('text_password')
-                                <div class="text-danger">{{ $message }}</div>
+                                <div class="text-danger mt-1">
+                                    &nbsp;&nbsp;&nbsp;{{ $message }}
+                                </div>
                                 @enderror
                             </div>
                             <div class="mb-3">
@@ -39,12 +43,17 @@
                             </div>
                         </form>
 
-                        {{-- invalid login --}}
-                        @if(session('loginError'))
-                        <div class="alert alert-danger text-center">
-                            {{ session('loginError') }}
+                        <!-- {{-- Exibir mensagens de erro - errors --}}
+                        @if ($errors->any())
+                        <div class="alert alert-danger mt-3">
+                            <ul class="m-0">
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                        @endif
+                        @endif -->
+
                     </div>
                 </div>
 
@@ -52,9 +61,9 @@
                 <div class="text-center text-secondary mt-3">
                     <small>&copy; <?= date('Y') ?> Notes</small>
                 </div>
+
             </div>
         </div>
     </div>
 </div>
-
 @endsection
